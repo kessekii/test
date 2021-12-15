@@ -1,9 +1,9 @@
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: 'song_name', headerName: 'Song Name', width: 70 },
+  { field: 'song_name', headerName: 'Song Name', width: 130 },
   { field: 'band', headerName: 'Band', width: 130 },
-  { field: 'year', headerName: 'Year', width: 130 },
+  { field: 'year', headerName: 'Year', width: 70 },
 ];
 
 export default function DataTable({data}) {

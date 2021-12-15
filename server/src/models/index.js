@@ -20,13 +20,6 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 db.song_list = require("./song.model.js")(sequelize, Sequelize)
 
-
-
-
-
-
-let song_list = []
-
 fs.createReadStream('./song_list.csv')
     .pipe(csv())
     .on('data', async(data) => {
@@ -37,7 +30,7 @@ fs.createReadStream('./song_list.csv')
                 }
             })
             if (a.length == 0) {
-                const song = await db.song_list.create({
+                await db.song_list.create({
                     song_name: data.Song_Name.toLowerCase(),
                     band: data.Band.toLowerCase(),
                     year: data.Year
@@ -47,9 +40,6 @@ fs.createReadStream('./song_list.csv')
         } catch (err) {
             console.error(err)
         }
-    })
-    .on('error', (error) => {
-        console.error(error)
     })
 
 module.exports = db

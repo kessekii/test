@@ -36,6 +36,7 @@ services:
       MYSQL_HOST_IP: mysql_db
     ports:
       - "4000:4000"
+
   client:
     stdin_open: true
     environment:
