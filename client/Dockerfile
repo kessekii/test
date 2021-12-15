@@ -1,7 +1,8 @@
 FROM node:lts
-WORKDIR /app
+WORKDIR /src
 COPY package.json ./
 COPY package-lock.json ./
 COPY ./ ./
 RUN npm i
+EXPOSE 3000
 CMD ["npm", "start"]

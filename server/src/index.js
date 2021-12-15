@@ -14,11 +14,11 @@ app.get("/", cors(), async(req, res) => {
 
     res.send("This is working")
 })
-db.sequelize.sync()
 
-app.post("/post_name", async(req, res) => {
-    let { name } = req.body
-    console.log(name)
+app.get("/home", cors(), async(req, res) => {
+    const dataRaw = await db.song_list.findAll()
+    const data = dataRaw.map((song) => song.dataValues)
+    res.send(data)
 })
 app.listen(port, () => {
 

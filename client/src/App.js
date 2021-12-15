@@ -1,35 +1,20 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import "./App.css"
+import DataTable from "./components/tableComponent"
 
 function App() {
-	const [ name, setName ] = useState("")
-	const [ home, setHome ] = useState("")
+	const [ data, setData ] = useState("")
 
 	useEffect(() => {
 		axios.get("http://localhost:4000/home").then(function(response) {
-			setHome(response.data)
+		 	setData(response.data)
 		})
 	}, [])
 
-	async function postName(e) {
-		e.preventDefault()
-		try {
-			await axios.post("http://localhost:4000/post_name", {
-				name
-			})
-		} catch (error) {
-			console.error(error)
-		}
-	}
-
 	return (
 		<div className="App">
-			<form onSubmit={postName}>
-				<input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-				<button type="submit">Send Name</button>
-			</form>
-			{home}
+			<DataTable data={data}/>
 		</div>
 	)
 }
